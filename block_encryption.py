@@ -1,16 +1,18 @@
 from Crypto.Cipher import AES
+from Crypto.Util.Padding import pad, unpad
 
 
 class ECB:
-    def __init__(self, key):
-        self.key = key
+    def __init__(self, key, block_size=16):
+        self.key = key.encode('utf-8')
         self.cipher = AES.new(self.key, AES.MODE_ECB)
+        self.block_size = block_size
 
     def encrypt(self, plaintext):
-        return self.cipher.encrypt(plaintext)
+        return self.cipher.encrypt(pad(plaintext.encode('utf-8'), self.block_size))
 
     def decrypt(self, ciphertext):
-        return self.cipher.decrypt(ciphertext)
+        return unpad(self.cipher.decrypt(ciphertext), self.block_size)
 
 
 class CBC:

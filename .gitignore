@@ -1,0 +1,10 @@
+test
+test*
+mpi
+NIST-Statistical-Test-Suite
+__pycache__
+venv
+.idea
+benchmark/duzy
+benchmark/sredni
+benchmark/maly
